@@ -21,10 +21,7 @@ class Main(View):
         num_questions = request.POST["q_amount"]
         type_questions = request.POST["q_type"]
 
-        if "q_distractors" in request.POST:
-            num_distractors = int(request.POST["q_distractors"])
-        else:
-            num_distractors = 2
+        num_distractors = int(request.POST["q_distractors"]) or 2
 
         if type_questions == "MCQ":
             content = f"{num_questions} multiple-choice questions with "

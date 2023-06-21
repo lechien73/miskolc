@@ -32,7 +32,7 @@
                 <form id="q_form" action="/" method="POST">
                     {% csrf_token %}
                     <select name="q_type" class="form-select mb-2" aria-label="Question type">
-                        <option selected>Select question type</option>
+                        <option value="MCQ" selected>Select question type</option>
                         <option value="MCQ">Multiple-choice questions</option>
                         <option value="short essay">Short essay questions</option>
                         <option value="long-form essay">Long-form essay</option>
@@ -40,7 +40,7 @@
                         <option value="coding knowledge">Coding knowledge</option>
                     </select>
                     <select name="q_amount" class="form-select mb-2" aria-label="Number to generate">
-                        <option selected>How many questions should I generate?</option>
+                        <option value="2" selected>How many questions should I generate?</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -48,7 +48,7 @@
                         <option value="5">5</option>
                     </select>
                     <select name="q_distractors" class="form-select mb-2" aria-label="MCQ distractors">
-                        <option selected>For MCQs, how many distractors do you want?</option>
+                        <option value="2" selected>For MCQs, how many distractors do you want?</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
