@@ -20,7 +20,12 @@ class Main(View):
         script = request.POST["l_script"]
         num_questions = request.POST["q_amount"]
         type_questions = request.POST["q_type"]
-        num_distractors = int(request.POST["q_distractors"])
+
+        if "q_distractors" in request.POST:
+            num_distractors = int(request.POST["q_distractors"])
+        else:
+            num_distractors = 2
+
         if type_questions == "MCQ":
             content = f"{num_questions} multiple-choice questions with "
             content += f"{num_distractors + 1} options and {num_distractors} "
@@ -28,7 +33,8 @@ class Main(View):
             content += "above' or 'none of the above'. Indicate the correct answer."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
         elif type_questions == "variations":
-            user_content = f"{num_questions} variations of the following questions ```{script}``` Use the same format as the questions, and indicate the correct answer if applicable"
+            user_content = f"{num_questions} variations of the following questions."
+            user_content += f"Use the same format and indicate the correct answer: ```{script}```"
         else:
             content = f"{num_questions} {type_questions} questions."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
