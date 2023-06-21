@@ -24,3 +24,7 @@ document.getElementById("submit").addEventListener("click", (e) => {
     document.getElementById("loader").classList.remove("d-none");
     postForm();
 });
+
+document.getElementById("transfer").addEventListener("click", (e) => {
+    document.getElementById("ScriptArea").innerHTMl = document.getElementById("results").innerHTML;
+});
