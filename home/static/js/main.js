@@ -26,5 +26,5 @@ document.getElementById("submit").addEventListener("click", (e) => {
 });
 
 document.getElementById("transfer").addEventListener("click", (e) => {
-    document.getElementById("ScriptArea").innerHTML = document.getElementById("results").innerHTML;
+    document.getElementById("ScriptArea").value = document.getElementById("results").innerText;
 });
