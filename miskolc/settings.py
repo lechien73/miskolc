@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n43=vn42kfiglkfrgu6(ua5v+3=!7ch4hg44v$r8#y9op!xeo('
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".codeanyapp.com"]
+ALLOWED_HOSTS = ["quizmogrify.herokuapp.com", ".codeanyapp.com"]
 
 
 # Application definition
@@ -69,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://pep8ciara.herokuapp.com',
+CSRF_TRUSTED_ORIGINS = ['https://quizmogrify.herokuapp.com',
                         'https://8000-lechien73-miskolc-s3ikkeaaar.us2.codeanyapp.com']
 
 
