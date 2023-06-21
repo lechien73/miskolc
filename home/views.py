@@ -28,16 +28,18 @@ class Main(View):
             content += f"{num_distractors + 1} options and {num_distractors} "
             content += "distractors. Do not use distractors such as 'all of the "
             content += "above' or 'none of the above'. Indicate the correct answer."
+            content += "Ensure the questions are only based on the supplied content."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
         elif type_questions == "variations":
-            user_content = f"{num_questions} variations of the following questions."
+            user_content = f"Keeping the original questions the same, create new distractors for the following questions."
             user_content += f"Use the same format and indicate the correct answer: ```{script}```"
         else:
             content = f"{num_questions} {type_questions} questions."
+            content += "Ensure the questions are only based on the supplied content."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
 
         messages = [
-            {"role": "system", "content": "Your role is to create assessment questions for coding-related questions. Answers should be delivered with no preamble."},
+            {"role": "system", "content": "Your role is to create assessment questions for coding-related questions.  Answers should be delivered with no preamble."},
             {"role": "user", "content": user_content}]
 
         enc = tiktoken.encoding_for_model("gpt-3.5-turbo")

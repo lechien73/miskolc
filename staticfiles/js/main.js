@@ -20,6 +20,11 @@ async function postForm() {
 }
 
 document.getElementById("submit").addEventListener("click", (e) => {
+    document.getElementById("results").innerHTML = "";
     document.getElementById("loader").classList.remove("d-none");
     postForm();
+});
+
+document.getElementById("transfer").addEventListener("click", (e) => {
+    document.getElementById("ScriptArea").value = document.getElementById("results").innerText;
 });
