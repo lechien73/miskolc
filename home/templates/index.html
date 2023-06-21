@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+    <title>Questiony Thing</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mt-3">
+                <a href="/"><img id="logo" src="https://codeinstitute.s3.amazonaws.com/assets/logo.png" width="250"
+                        alt="Code Institute Logo"></a>
+            </div>
+            <div class="col-md-4 text-center mt-3">
+                <h1 class="heading">Quizmogrifier</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-6">
+                <h2>Source:</h2>
+                <form id="q_form" action="/" method="POST">
+                    {% csrf_token %}
+                    <select name="q_type" class="form-select mb-2" aria-label="Question type">
+                        <option selected>Select question type</option>
+                        <option value="MCQ">Multiple-choice questions</option>
+                        <option value="short essay">Short essay questions</option>
+                        <option value="long-form essay">Long-form essay</option>
+                        <option value="coding knowledge">Coding knowledge</option>
+                    </select>
+                    <select name="q_amount" class="form-select mb-2" aria-label="Number to generate">
+                        <option selected>How many questions should I generate?</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <select name="q_distractors" class="form-select mb-2" aria-label="MCQ distractors">
+                        <option selected>For MCQs, how many distractors do you want?</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <label for="ScriptArea" class="form-label">Paste in the script or enter the context from which to
+                        generate the questions:</label>
+                    <textarea name="l_script" class="form-control mb-2" id="ScriptArea" rows="15"></textarea>
+                </form>
+                <button class="btn btn-success" id="submit">Quizmogrify!</button>
+            </div>
+            <div class="col-6">
+                <h2>Results:</h2>
+                <img src="{% static 'img/loader.gif' %}" width="50" class="text-center d-none" id="loader">
+                <p id="results"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
