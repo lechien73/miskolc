@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["quizmogrify.herokuapp.com", ".codeanyapp.com"]
+ALLOWED_HOSTS = ["quizmogrify-1ab7731018ca.herokuapp.com", ".codeanyapp.com"]
 
 
 # Application definition
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://quizmogrify.herokuapp.com',
+CSRF_TRUSTED_ORIGINS = ['https://quizmogrify-1ab7731018ca.herokuapp.com',
                         'https://8000-lechien73-miskolc-s3ikkeaaar.us2.codeanyapp.com']
 
 
