@@ -27,8 +27,8 @@ class Main(View):
             content += "distractors. Do not use distractors such as 'all of the "
             content += "above' or 'none of the above'."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
-        elif type_questions = "variations":
-            user_content = f"{num_questions} variations of the following questions ```{script}```."
+        elif type_questions == "variations":
+            user_content = f"{num_questions} variations of the following questions ```{script}```"
         else:
             content = f"{num_questions} {type_questions} questions."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
