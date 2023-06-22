@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import View
 import openai
 import os
+import re
 import tiktoken
 
 
@@ -27,11 +28,11 @@ class Main(View):
             content = f"{num_questions} multiple-choice questions with "
             content += f"{num_distractors + 1} options and {num_distractors} "
             content += "distractors. Do not use distractors such as 'all of the "
-            content += "above' or 'none of the above'. Indicate the correct answer."
+            content += "above' or 'none of the above'. Indicate the correct answer at the bottom."
             content += "Ensure the questions are only based on the supplied content."
             user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
         elif type_questions == "variations":
-            user_content = f"Keeping the original questions the same, create new distractors for the following questions."
+            user_content = f"Create {num_distractors} new distractors for the following questions."
             user_content += f"Use the same format and indicate the correct answer: ```{script}```"
         else:
             content = f"{num_questions} {type_questions} questions."
@@ -51,7 +52,28 @@ class Main(View):
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo", messages=messages)
 
-            result = response["choices"][0]["message"]["content"].replace(
+            final_content = {
+                "content": "",
+                "mcq": ""
+            }
+
+            if type_questions == "MCQ":
+                system = "Perform the following two operations on the attached multiple-choice questions: "
+                system += "First, replace any commas with &#44. "
+                system += "Second, reformat the questions below as CSV in this format with headings: "
+                system += "question,correct, optb,optc,optd where 'question' is the question, "
+                system += "'correct' is the correct answer, 'optb', 'optc' and 'optd' are the distractors. "
+                messages = [
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": "The questions are: " + response["choices"][0]["message"]["content"]}]
+
+                mcq = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo", messages=messages)
+
+                final_content["mcq"] = re.sub(
+                    r"[a-zA-Z]\)\s", "", mcq["choices"][0]["message"]["content"])
+
+            final_content["content"] = response["choices"][0]["message"]["content"].replace(
                 "\n", "<br>")
 
-        return HttpResponse(result, status=200)
+        return JsonResponse(final_content, status=200)

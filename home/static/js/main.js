@@ -8,12 +8,23 @@ async function postForm() {
         body: form,
     });
 
-    const data = await response.text();
+    const data = await response.json();
 
     if (response.ok) {
         let results = document.getElementById("results");
         document.getElementById("loader").classList.add("d-none");
-        results.innerHTML = data;
+        results.innerHTML = data.content;
+
+        if (data.mcq) {
+            document.getElementById("csv_text").value = data.mcq;
+            results.innerHTML += '<br /><button class="btn btn-info mt-3" id="download">Download CSV</button>';
+            document.getElementById("download").addEventListener("click", (e) => {
+                function dataUrl(data) { return "data:x-application/text," + escape(data); }
+                window.open(dataUrl(document.getElementById("csv_text").value));
+            });
+
+        }
+
     } else {
         throw new Error(data.error);
     }

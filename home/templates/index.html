@@ -64,10 +64,13 @@
             <div class="col-6">
                 <h2><i class="fas fa-angle-left d-inline-block" id="transfer"></i> Results:</h2>
                 <img src="{% static 'img/loader.gif' %}" width="50" class="text-center d-none" id="loader">
-                <p id="results"></p>
+                <div id="results_container">
+                    <p id="results"></p>
+                </div>
             </div>
         </div>
     </div>
+    <textarea style="display: none" id="csv_text"></textarea>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
     <script defer src="{% static 'js/main.js' %}"></script>
