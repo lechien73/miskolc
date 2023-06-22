@@ -34,6 +34,12 @@ class Main(View):
         elif type_questions == "variations":
             user_content = f"Create {num_distractors} new distractors for the following questions."
             user_content += f"Use the same format and indicate the correct answer: ```{script}```"
+        elif type_questions == "coding knowledge":
+            content = f"{num_questions} {type_questions} questions."
+            content += "Ensure the questions are only based on the supplied content."
+            user_content = f"Generate {content}. The questions may require the user to write some code in the "
+            user_content += f"programming language used in the script. Generate the questions based on this script ```{script}```"
+
         else:
             content = f"{num_questions} {type_questions} questions."
             content += "Ensure the questions are only based on the supplied content."
