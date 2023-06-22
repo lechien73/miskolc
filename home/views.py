@@ -39,7 +39,13 @@ class Main(View):
             content += "Ensure the questions are only based on the supplied content."
             user_content = f"Generate {content}. The questions may require the user to write some code in the "
             user_content += f"programming language used in the script. Generate the questions based on this script ```{script}```"
-
+        elif type_questions == "maths":
+            content = f"{num_questions} multiple-choice questions with "
+            content += f"{num_distractors + 1} options and {num_distractors} "
+            content += "distractors. Do not use distractors such as 'all of the "
+            content += "above' or 'none of the above'. Indicate the correct answer at the bottom."
+            content += "Provide formulas in LaTeX format"
+            user_content = f"Generate {content}. Generate the questions based on this script ```{script}```"
         else:
             content = f"{num_questions} {type_questions} questions."
             content += "Ensure the questions are only based on the supplied content."

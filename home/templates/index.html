@@ -34,7 +34,8 @@
                     {% csrf_token %}
                     <select name="q_type" class="form-select mb-2" aria-label="Question type">
                         <option value="MCQ" selected>Select question type</option>
-                        <option value="MCQ">Multiple-choice questions</option>
+                        <option value="MCQ">General multiple-choice questions</option>
+                        <option value="maths">Maths multiple-choice questions</option>
                         <option value="short essay">Short essay questions</option>
                         <option value="long-form essay">Long-form essay</option>
                         <option value="coding knowledge">Coding knowledge</option>
