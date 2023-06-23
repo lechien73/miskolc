@@ -39,3 +39,11 @@ document.getElementById("submit").addEventListener("click", (e) => {
 document.getElementById("transfer").addEventListener("click", (e) => {
     document.getElementById("ScriptArea").value = document.getElementById("results").innerText;
 });
+
+document.getElementById("copy").addEventListener("click", (e) => {
+    var results = document.getElementById("results");
+    results.select();
+    results.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(results.innerText);
+    alert("Copied results to clipboard");
+});
