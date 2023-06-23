@@ -68,7 +68,7 @@
                         <h2><i class="fas fa-angle-left d-inline-block hover-item" id="transfer"></i> Results:</h2>
                     </div>
                     <div class="col-2">
-                        <h2><i class="fas fa-clipboard d-inline-block hover-item" id="copy"></i></h2>
+                        <h2><i class="fas fa-clipboard d-none hover-item" id="copyresults"></i></h2>
                     </div>
                 </div>
 
@@ -80,6 +80,7 @@
         </div>
     </div>
     <textarea style="display: none" id="csv_text"></textarea>
+    <textarea style="display: none" id="copy_text"></textarea>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
     <script defer src="{% static 'js/main.js' %}"></script>

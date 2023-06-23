@@ -17,7 +17,7 @@ async function postForm() {
 
         if (data.mcq) {
             document.getElementById("csv_text").value = data.mcq;
-            results.innerHTML += '<br /><button class="btn btn-info" id="download">Download CSV</button>';
+            results.innerHTML += '<br /><button class="btn btn-info mt-3" id="download">Download CSV</button>';
             document.getElementById("download").addEventListener("click", (e) => {
                 function dataUrl(data) { return "data:x-application/text," + escape(data); }
                 window.open(dataUrl(document.getElementById("csv_text").value));
@@ -39,3 +39,21 @@ document.getElementById("submit").addEventListener("click", (e) => {
 document.getElementById("transfer").addEventListener("click", (e) => {
     document.getElementById("ScriptArea").value = document.getElementById("results").innerText;
 });
+
+document.getElementById("copyresults").addEventListener("click", (e) => {
+
+    copyToClipboard(document.getElementById("results").innerText);
+
+    alert("Copied to clipboard");
+});
+
+function copyToClipboard(str) {
+    let el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style = { position: 'absolute', left: '-9999px' };
+    document.body.appendChild(el);
+    el.select();
+    navigator.clipboard.writeText(el.value);
+    document.body.removeChild(el);
+}

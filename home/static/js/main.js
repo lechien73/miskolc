@@ -40,10 +40,20 @@ document.getElementById("transfer").addEventListener("click", (e) => {
     document.getElementById("ScriptArea").value = document.getElementById("results").innerText;
 });
 
-document.getElementById("copy").addEventListener("click", (e) => {
-    var results = document.getElementById("results");
-    results.select();
-    results.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(results.innerText);
-    alert("Copied results to clipboard");
+document.getElementById("copyresults").addEventListener("click", (e) => {
+
+    copyToClipboard(document.getElementById("results").innerText);
+
+    alert("Copied to clipboard");
 });
+
+function copyToClipboard(str) {
+    let el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style = { position: 'absolute', left: '-9999px' };
+    document.body.appendChild(el);
+    el.select();
+    navigator.clipboard.writeText(el.value);
+    document.body.removeChild(el);
+}
