@@ -14,6 +14,7 @@ async function postForm() {
         let results = document.getElementById("results");
         document.getElementById("loader").classList.add("d-none");
         results.innerHTML = data.content;
+        MathJax.typeset();
 
         if (data.mcq) {
             document.getElementById("csv_text").value = data.mcq;
