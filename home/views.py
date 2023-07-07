@@ -14,6 +14,8 @@ class Main(View):
 
     def post(self, request, *args, **kwargs):
 
+        model = "gpt-3.5-turbo"
+
         API_KEY = os.getenv("OPENAI_KEY")
         if not API_KEY:
             return HttpResponse(status=500)
@@ -40,6 +42,7 @@ class Main(View):
             user_content = f"Generate {content}. The questions may require the user to write some code in the "
             user_content += f"programming language used in the script. Generate the questions based on this script ```{script}```"
         elif type_questions == "maths":
+            model = "gpt-4"
             content = f"{num_questions} multiple-choice questions with "
             content += f"{num_distractors + 1} options and {num_distractors} "
             content += "distractors. Do not use distractors such as 'all of the "
@@ -62,7 +65,7 @@ class Main(View):
         else:
             openai.api_key = API_KEY
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo", messages=messages)
+                model=model, messages=messages)
 
             final_content = {
                 "content": "",
